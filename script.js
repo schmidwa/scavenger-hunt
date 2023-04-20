@@ -3,15 +3,28 @@ const outputElem = document.querySelector('output')
 // human: get password from prof and enter the password into the first field and press enter
 
 // code:
-// read that password from the password input and make an HTTP request to the url provided in next property of the auto populated output, concatenated with the password
-
+// read that password from the password input and make an HTTP request to the url provided in next property of the
+// auto populated output, concatenated with the password
+// password: "1.json" (without the quotes)
 
 
 const pw = document.getElementById('i1')
+
 pw.addEventListener('keyup', (ev) => {
   if (ev.key === 'Enter') {
     console.log(pw.value)
-    req.open("GET", `${PROVIDED_URL}${THE_PASSWORD_VALUE}`); // FIXME 
+
+    const autoOutput = document.getElementById('auto')
+    console.log(autoOutput)
+    const autoContent = autoOutput.value
+    console.log(autoContent)
+
+    // parse the string as JSON
+    const structuredContent = JSON.parse(autoContent)
+    console.log(structuredContent)
+    console.log(structuredContent.next)
+
+    req.open("GET", `${structuredContent.next}${pw.value}`); // FIXME 
     req.send();
   }
 })
